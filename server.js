@@ -12,22 +12,44 @@ bot.on('error', (err) => {
 })
 
 bot.on('message', (payload, reply) => {
-  let text = payload.message.text
-
   bot.getProfile(payload.sender.id, (err, profile) => {
     if (err) throw err
-
-    reply({ text }, (err) => {
-      if (err) throw err
-
-      console.log(`Echoed back to ${profile.first_name} ${profile.last_name}: ${text}`)
-    })
+    console.log(`Message received from ${profile.first_name} ${profile.last_name}: ${text}`)
   })
 })
 
 bot.on('message', (payload, reply) => {
   let message = payload.message.text
-  reply({text: 'hey!'}, (err, info) => {})
+
+
+  switch(message){
+    case 'ola companheiro':
+      let element = {
+        title: 'Olaaaaar, companheiro!',
+        subtitle: 'Vamos fazer uma greve, companheiro!',
+        image_url: 'http://multimidia.gazetadopovo.com.br/media/info/2016/201602/lula-timeline/lula-8.jpg',
+        buttons: []
+      }
+
+      element.buttons.push({
+        type: 'web_url',
+        title: 'Procure por mim',
+        url: `https://google.com/search?q=Lula`
+      })
+
+      reply({
+        attachment: {
+          type: 'template', 
+          payload: {
+            template_type: 'generic',
+            elements: [elements]
+          }
+        }
+      })
+      break;
+  }
+  
+  //reply({text: 'hey!'}, (err, info) => {})
 })
 
 // SERVER
