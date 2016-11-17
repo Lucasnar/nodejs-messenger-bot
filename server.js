@@ -1,13 +1,10 @@
 'use strict'
 const http = require('http')
-const express = require('express')
-const bodyParser = require('body-parser')
 const Bot = require('messenger-bot')
 
 let bot = new Bot({
-  token: process.env.PAGE_TOKEN, //'PAGE_TOKEN',
-  verify: process.env.VERIFY_TOKEN //'VERIFY_TOKEN',
-  //app_secret: 'APP_SECRET'
+  token: process.env.PAGE_TOKEN, 
+  verify: process.env.VERIFY_TOKEN 
 })
 
 bot.on('error', (err) => {
@@ -28,20 +25,5 @@ bot.on('message', (payload, reply) => {
   })
 })
 
-let app = express()
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
-
-app.get('/', (req, res) => {
-  return bot._verify(req, res)
-})
-
-app.post('/', (req, res) => {
-  bot._handleMessage(req.body)
-  res.end(JSON.stringify({status: 'ok'}))
-})
-
-http.createServer(app).listen(process.env.PORT || 5000)
+http.createServer(bot.middleware()).listen(process.env.PORT || 5000)
+console.log('Echo bot server running at port 5000.')
