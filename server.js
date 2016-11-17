@@ -25,5 +25,11 @@ bot.on('message', (payload, reply) => {
   })
 })
 
+bot.on('message', (payload, reply) => {
+  let message = payload.message.text
+  reply({text: 'hey!'}, (err, info) => {})
+})
+
+// SERVER
 http.createServer(bot.middleware()).listen(process.env.PORT || 5000)
 console.log('Echo bot server running at port 5000.')
