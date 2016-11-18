@@ -12,6 +12,7 @@ bot.on('error', (err) => {
 })
 
 bot.on('message', (payload, reply) => {
+  let text = payload.message.text
   bot.getProfile(payload.sender.id, (err, profile) => {
     if (err) throw err
     console.log(`Message received from ${profile.first_name} ${profile.last_name}: ${text}`)
