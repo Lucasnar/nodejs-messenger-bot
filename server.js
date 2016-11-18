@@ -43,7 +43,7 @@ bot.on('message', (payload, reply) => {
           type: 'template', 
           payload: {
             template_type: 'generic',
-            elements: [elements]
+            elements: [element]
           }
         }
       })
