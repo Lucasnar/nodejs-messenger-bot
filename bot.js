@@ -82,7 +82,6 @@ bot.on('message', (payload, reply) => {
           }]
         })
       }
-      //console.log(my_elements[0])
 
       reply({
         attachment: {
@@ -93,7 +92,6 @@ bot.on('message', (payload, reply) => {
           }
         }
       })
-      //console.log('here')
 
       break;
   }
