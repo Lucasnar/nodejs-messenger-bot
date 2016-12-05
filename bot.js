@@ -30,17 +30,17 @@ bot.on('message', (payload, reply) => {
 
 
   switch(message.toLowerCase()){
-    case 'ola companheiro':
+    case 'hello':
       let element = {
-        title: 'Olaaaaar, companheiro!',
-        subtitle: 'Vamos fazer uma greve, companheiro!',
+        title: 'Hello!',
+        subtitle: 'My name is Squid. Nice to meet ya!',
         image_url: 'http://multimidia.gazetadopovo.com.br/media/info/2016/201602/lula-timeline/lula-8.jpg',
         buttons: []
       }
 
       element.buttons.push({
         type: 'web_url',
-        title: 'Procure por mim',
+        title: 'Look for me',
         url: `https://google.com/search?q=Lula`
       })
 
@@ -55,7 +55,7 @@ bot.on('message', (payload, reply) => {
       })
 
       break;
-    case 'manda ibagens':
+    case 'images':
       for(let i = 0, l = image_url_array.length; i<l; ++i){
         reply({
           attachment: {
@@ -67,12 +67,12 @@ bot.on('message', (payload, reply) => {
         })
       }
       break;
-    case 'manda ibagens horizontal':
+    case 'himages':
       var my_elements = []
       for(let i = 0, l = image_url_array.length; i<l; ++i){
         my_elements.push({
-          title: 'TESTEZINHO',
-          subtitle: 'SUPAAA TESTE',
+          title: 'LITTLE TEST',
+          subtitle: 'Test',
           item_url: 'google.com',
           image_url: image_url_array[i],
           buttons: [{
@@ -92,7 +92,9 @@ bot.on('message', (payload, reply) => {
           }
         }
       })
-
+      break;
+    default:
+      reply({ text: message }, (err, info) => {} )
       break;
   }
 })
